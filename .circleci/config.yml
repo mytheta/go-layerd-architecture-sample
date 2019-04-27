@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    working_directory: /go/src/github.com/mytheta/go-layerd-architecture-sample
+    docker:
+    - image: circleci/golang:1.12
+    environment:
+      GO111MODULE: "on"
+    steps:
+      - checkout
+      - setup_remote_docker:
+           version: 18.05.0-ce
+      - run:
+          name: vendoring
+          command: make mod
+      - run:
+          name: compile check
+          command: make build
+      - run:
+          name: test check
+          command:  make test
