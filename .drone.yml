@@ -1,0 +1,9 @@
+kind: pipeline
+name: default
+
+steps:
+- name: echo
+  image: golang:1.14
+  commands:
+    - echo  "hello"
+
